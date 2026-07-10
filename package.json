@@ -1,0 +1,12 @@
+{
+  "name": "ram-ready-financial-futures",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Ram Ready Financial Futures — Financial-Literacy-Course static site (no build step required).",
+  "scripts": {
+    "validate": "node scripts/validate-site.mjs",
+    "serve": "python3 -m http.server 8080"
+  },
+  "license": "MIT"
+}
