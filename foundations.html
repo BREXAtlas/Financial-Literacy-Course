@@ -41,13 +41,14 @@
     </section>
     <section>
       <h2>Concept</h2>
-      <dl id="episode-concept"></dl>
+      <div id="episode-concept"></div>
     </section>
+    <section id="episode-visualization" class="section"></section>
+    <section id="episode-calculator" class="section"></section>
     <section id="special-widget" class="section"></section>
     <section>
       <h2 id="scenario-prompt"></h2>
       <ul class="choice-list" id="choice-list"></ul>
-      <div class="consequence-panel" id="consequence-panel" hidden></div>
     </section>
     <section class="knowledge-check" id="knowledge-check-section" hidden>
       <h2>Knowledge check</h2>
@@ -72,6 +73,12 @@
   import { renderAccessibleListAlternative } from "./assets/accessibility.js";
   import { loadState } from "./assets/profile-engine.js";
   import * as calc from "./assets/calculator-engine.js";
+  import { renderCalculatorWidget } from "./assets/calculator-widget.js";
+  import { renderChoiceCards } from "./assets/choice-cards.js";
+  import { resolveTokens } from "./assets/personalization-engine.js";
+  import { renderConceptSection } from "./assets/concept-section.js";
+  import { renderVisualization } from "./assets/visualization-engine.js";
+  import { getVisualizationForEpisode } from "./data/visualizations.js";
 
   initPage("foundations.html");
 
@@ -141,73 +148,43 @@
       : "Bella: Let's look at the evidence together.";
 
     const profile = currentProfile();
+    const resolveText = (text) => resolveTokens(text, profile);
     const narrative = await renderEpisodeNarrative(episode, profile, useGenericStory);
     document.getElementById("episode-narrative").textContent = narrative;
-    document.getElementById("episode-realworld").textContent = episode.realWorldExample;
+    document.getElementById("episode-realworld").textContent = resolveText(episode.realWorldExample);
 
-    const conceptEl = document.getElementById("episode-concept");
-    conceptEl.innerHTML = "";
-    const c = episode.conceptExplanation || {};
-    const rows = [
-      ["What", c.what], ["Why it exists", c.why], ["How it may help", c.how], ["What it may cost", c.cost],
-      ["Risks or limitations", c.risks], ["Who may benefit", c.whoMayBenefit], ["Who may not benefit", c.whoMayNotBenefit],
-      ["When misunderstood", c.misunderstandingRisk], ["Verify", c.verifyNote]
-    ];
-    for (const [label, value] of rows) {
-      if (!value) continue;
-      const dt = document.createElement("dt"); dt.textContent = label;
-      const dd = document.createElement("dd"); dd.textContent = value;
-      conceptEl.appendChild(dt); conceptEl.appendChild(dd);
+    renderConceptSection(document.getElementById("episode-concept"), episode.conceptExplanation, resolveText);
+
+    const episodeViz = getVisualizationForEpisode(episode.id);
+    if (episodeViz) {
+      renderVisualization(document.getElementById("episode-visualization"), episodeViz, resolveText);
+    } else {
+      document.getElementById("episode-visualization").innerHTML = "";
     }
 
-    renderSpecialWidget(episode);
+    renderEpisodeCalculator(episode);
 
-    document.getElementById("scenario-prompt").textContent = episode.scenario?.prompt || "Make a choice";
+    renderSpecialWidget(episode, resolveText);
+
+    document.getElementById("scenario-prompt").textContent = resolveText(episode.scenario?.prompt) || "Make a choice";
     const choiceList = document.getElementById("choice-list");
-    choiceList.innerHTML = "";
     let simState = INITIAL_SIM_STATE;
     let scenarioComplete = false;
     let knowledgeCheckPassed = false;
 
-    for (const choice of episode.choices || []) {
-      const li = document.createElement("li");
-      li.className = "choice-card";
-      li.innerHTML = `
-        <p><strong>${choice.text}</strong></p>
-        <p><em>Why someone might choose this:</em> ${choice.whyChosen}</p>
-        <p><em>Possible benefit:</em> ${choice.possibleBenefit}</p>
-        <p><em>Possible cost:</em> ${choice.possibleCost}</p>
-        <p><em>Possible risk:</em> ${choice.possibleRisk}</p>
-        <button class="btn btn-outline choose-btn" data-choice-id="${choice.id}">Choose this</button>
-      `;
-      choiceList.appendChild(li);
-    }
-
-    choiceList.addEventListener("click", (e) => {
-      const btn = e.target.closest(".choose-btn");
-      if (!btn) return;
-      const choiceId = btn.dataset.choiceId;
-      const choice = episode.choices.find((c2) => c2.id === choiceId);
-      simState = applyChoiceEffect(simState, choice.immediateEffect);
-      submitChoice(episode.id, choiceId);
-      scenarioComplete = true;
-
-      const panel = document.getElementById("consequence-panel");
-      panel.hidden = false;
-      panel.innerHTML = `
-        <p><strong>Right away:</strong> ${episode.immediateConsequences?.[choiceId] || ""}</p>
-        <p><strong>One year later:</strong> ${episode.oneYearConsequences?.[choiceId] || ""}</p>
-        <p><strong>Long term:</strong> ${episode.longTermConsequences?.[choiceId] || ""}</p>
-        <p><strong>What could change this outcome:</strong> ${choice.whatCouldChangeThisOutcome}</p>
-        <p><strong>If this didn't go the way you hoped:</strong> ${episode.recoveryPath}</p>
-      `;
-      document.getElementById("try-another-path-btn").hidden = false;
-      renderKnowledgeCheck();
+    const cardsApi = renderChoiceCards(choiceList, episode.choices || [], episode, {
+      resolveText,
+      onChoose: (choice) => {
+        simState = applyChoiceEffect(simState, choice.immediateEffect);
+        submitChoice(episode.id, choice.id);
+        scenarioComplete = true;
+        document.getElementById("try-another-path-btn").hidden = false;
+        renderKnowledgeCheck();
+      }
     });
 
     document.getElementById("try-another-path-btn").addEventListener("click", () => {
-      document.getElementById("consequence-panel").hidden = true;
-      document.getElementById("try-another-path-btn").hidden = true;
+      cardsApi.collapseAll();
     }, { once: false });
 
     function renderKnowledgeCheck() {
@@ -218,12 +195,12 @@
       for (const kc of episode.knowledgeChecks || []) {
         const wrap = document.createElement("div");
         wrap.innerHTML = `
-          <p>${kc.question}</p>
+          <p>${resolveText(kc.question)}</p>
           <div class="option-grid">
-            ${kc.options.map((o) => `<label><input type="radio" name="${kc.id}" value="${o}"> ${o}</label>`).join("")}
+            ${kc.options.map((o) => `<label><input type="radio" name="${kc.id}" value="${o}"> ${resolveText(o)}</label>`).join("")}
           </div>
           <button class="btn btn-outline" data-kc="${kc.id}">Check answer</button>
-          <p class="kc-explanation" hidden></p>
+          <p class="kc-explanation" aria-live="polite" hidden></p>
         `;
         body.appendChild(wrap);
         wrap.querySelector("button").addEventListener("click", () => {
@@ -232,9 +209,9 @@
           explanationEl.hidden = false;
           if (selected && selected.value === kc.correctAnswer) {
             knowledgeCheckPassed = true;
-            explanationEl.textContent = `Correct. ${kc.explanation}`;
+            explanationEl.textContent = `Correct. ${resolveText(kc.explanation)}`;
           } else {
-            explanationEl.textContent = `Not quite — the answer is "${kc.correctAnswer}." ${kc.explanation}`;
+            explanationEl.textContent = `Not quite — the answer is "${resolveText(kc.correctAnswer)}." ${resolveText(kc.explanation)}`;
           }
           document.getElementById("continue-episode-btn").hidden = false;
         });
@@ -260,23 +237,119 @@
     }, { once: true });
   }
 
-  function renderSpecialWidget(episode) {
+  function renderEpisodeCalculator(episode) {
+    const container = document.getElementById("episode-calculator");
+    container.innerHTML = "";
+    if (episode.calculatorType === "bankFee") {
+      renderCalculatorWidget(container, {
+        id: "bank-fee",
+        title: "Try it: bank-fee annual-cost calculator",
+        description: "Estimate what a checking account's fees could add up to in a year.",
+        inputs: [
+          { key: "monthlyMaintenanceFee", label: "Monthly maintenance fee ($)", default: 12 },
+          { key: "overdraftFee", label: "Overdraft fee ($)", default: 35 },
+          { key: "expectedOverdraftsPerYear", label: "Expected overdrafts per year", default: 1 },
+          { key: "otherAnnualFees", label: "Other annual fees ($)", default: 0 }
+        ],
+        compute: calc.bankFeeAnnualCost,
+        renderResult: (r) => `<p><strong>Illustrative annual cost: $${r.result.annualCost.toLocaleString()}</strong></p>`,
+        guideSteps: [
+          "Multiply the monthly maintenance fee by 12 months.",
+          "Multiply the overdraft fee by how many overdrafts you expect in a year.",
+          "Add any other annual fees (paper statements, out-of-network ATM, etc.).",
+          "Add the three totals together for the illustrative annual cost."
+        ],
+        sourceIds: ["cfpb-bank-accounts", "fdic-money-smart"],
+        reviewedDate: "2026-07-10"
+      });
+    } else if (episode.calculatorType === "transportation") {
+      renderCalculatorWidget(container, {
+        id: "transportation",
+        title: "Try it: transportation total-cost calculator",
+        description: "Add up the full monthly cost of a transportation choice, not just the payment.",
+        inputs: [
+          { key: "loanOrLeasePayment", label: "Loan or lease payment ($/mo)", default: 280 },
+          { key: "insurance", label: "Insurance ($/mo)", default: 120 },
+          { key: "fuelOrFares", label: "Fuel or fares ($/mo)", default: 140 },
+          { key: "maintenance", label: "Maintenance, averaged ($/mo)", default: 60 }
+        ],
+        compute: calc.transportationTotalCost,
+        renderResult: (r) => `<p><strong>Illustrative monthly total: $${r.result.monthlyTotal.toLocaleString()}</strong></p><p>Illustrative annual total: $${r.result.annualTotal.toLocaleString()}</p>`,
+        guideSteps: [
+          "Add the loan or lease payment (enter $0 if there is none).",
+          "Add insurance.",
+          "Add fuel or transit fares.",
+          "Add an averaged monthly maintenance estimate.",
+          "The sum is the illustrative total monthly cost — repeat for another option to compare."
+        ],
+        sourceIds: ["cfpb-your-money-your-goals"],
+        reviewedDate: "2026-07-10"
+      });
+    } else if (episode.calculatorType === "debtAvalancheSnowball") {
+      renderCalculatorWidget(container, {
+        id: "avalanche-snowball",
+        title: "Try it: debt avalanche vs. snowball comparison",
+        description: "Compare two illustrative balances paid off with the same extra monthly payment, prioritized two different ways.",
+        inputs: [
+          { key: "balanceA", label: "Balance A ($)", default: 2000 },
+          { key: "aprA", label: "Balance A APR (%)", default: 24 },
+          { key: "minA", label: "Balance A minimum payment ($)", default: 50 },
+          { key: "balanceB", label: "Balance B ($)", default: 800 },
+          { key: "aprB", label: "Balance B APR (%)", default: 18 },
+          { key: "minB", label: "Balance B minimum payment ($)", default: 25 },
+          { key: "extra", label: "Extra payment per month ($)", default: 150 }
+        ],
+        compute: (v) => calc.debtAvalancheSnowball({
+          debts: [
+            { name: "Balance A", balance: v.balanceA, aprPct: v.aprA, minPayment: v.minA },
+            { name: "Balance B", balance: v.balanceB, aprPct: v.aprB, minPayment: v.minB }
+          ],
+          extraMonthlyPayment: v.extra
+        }),
+        renderResult: (r) => `
+          <table>
+            <tr><th>Strategy</th><th>Months to pay off both</th><th>Total interest paid</th></tr>
+            <tr><td>Avalanche (highest APR first)</td><td>${r.result.avalanche.months}</td><td>$${r.result.avalanche.totalInterest.toLocaleString()}</td></tr>
+            <tr><td>Snowball (lowest balance first)</td><td>${r.result.snowball.months}</td><td>$${r.result.snowball.totalInterest.toLocaleString()}</td></tr>
+          </table>`,
+        guideSteps: [
+          "Each month, interest accrues on every balance at its own APR.",
+          "Pay the minimum on every balance.",
+          "Avalanche: put all extra payment toward the highest-APR balance first.",
+          "Snowball: put all extra payment toward the lowest-balance debt first.",
+          "Once a balance reaches zero, its payment rolls into the next targeted balance.",
+          "Repeat until both balances reach zero, then compare total months and total interest."
+        ],
+        sourceIds: ["cfpb-credit-reports-scores"],
+        reviewedDate: "2026-07-10"
+      });
+    }
+  }
+
+  function renderSpecialWidget(episode, resolveText) {
     const container = document.getElementById("special-widget");
     container.innerHTML = "";
 
     if (episode.payStubExample) {
       const p = episode.payStubExample;
+      const gross = p.grossPay ?? p.gross;
+      const net = p.netPay ?? p.net;
+      const rows = [
+        ["Gross pay", gross, false],
+        ["Federal withholding", p.federalWithholding, true],
+        ["Social Security", p.socialSecurity, true],
+        ["Medicare", p.medicare, true],
+        ["State withholding", p.stateWithholding, true],
+        ["Benefits deductions", p.benefitsDeduction ?? p.benefits, true]
+      ].filter(([, value]) => value !== undefined && value !== null);
       container.innerHTML += `
         <h2>Illustrative pay stub</h2>
+        ${p.label ? `<p>${p.label}</p>` : ""}
         <table>
-          <tr><th>Gross pay</th><td>$${p.gross}</td></tr>
-          <tr><th>Federal withholding</th><td>-$${p.federalWithholding}</td></tr>
-          <tr><th>Social Security</th><td>-$${p.socialSecurity}</td></tr>
-          <tr><th>Medicare</th><td>-$${p.medicare}</td></tr>
-          <tr><th>Benefits deductions</th><td>-$${p.benefits}</td></tr>
-          <tr><th>Net pay</th><td><strong>$${p.net}</strong></td></tr>
+          ${rows.map(([label, value, negative]) => `<tr><th>${label}</th><td>${negative ? "-" : ""}$${Number(value).toFixed(2)}</td></tr>`).join("")}
+          <tr><th>Net pay</th><td><strong>$${Number(net).toFixed(2)}</strong></td></tr>
         </table>
-        <p class="field-error" style="color:inherit">Illustrative example only — real withholding depends on current IRS guidance and your W-4.</p>`;
+        <p class="field-error" style="color:inherit">${p.note || "Illustrative example only — real withholding depends on current IRS guidance and your W-4."}</p>`;
     }
 
     if (episode.balanceSheetExample) {
@@ -293,22 +366,17 @@
     }
 
     if (episode.payoffComparisonExample) {
+      const pc = episode.payoffComparisonExample;
+      const scenarios = Array.isArray(pc) ? pc : (pc.scenarios || []);
+      const label = Array.isArray(pc) ? "Illustrative payoff comparison" : (pc.label || "Illustrative payoff comparison");
       container.innerHTML += `
         <h2>Illustrative payoff comparison</h2>
+        <p>${label}</p>
         <table>
-          <tr><th>Scenario</th><th>Monthly payment</th><th>Total interest</th><th>Payoff time</th></tr>
-          ${episode.payoffComparisonExample.map((s) => `<tr><td>${s.label}</td><td>$${s.monthlyPayment}</td><td>$${s.totalInterest}</td><td>${s.months} months</td></tr>`).join("")}
+          <tr><th>Scenario</th><th>Payoff time</th><th>Total interest paid</th></tr>
+          ${scenarios.map((s) => `<tr><td>${s.name || s.label}</td><td>${s.monthsToPayoff ?? s.months} months</td><td>$${(s.totalInterestPaid ?? s.totalInterest).toLocaleString()}</td></tr>`).join("")}
         </table>
-        <p>Illustrative estimate, not a forecast — actual APRs, fees, and balances vary.</p>`;
-    }
-
-    if (episode.dashboardMetrics) {
-      container.innerHTML += `
-        <h2>Financial-health dashboard</h2>
-        <div class="dashboard-grid">
-          ${episode.dashboardMetrics.map((m) => `<div class="stat-tile"><span class="stat-tile__value">—</span>${m.label}</div>`).join("")}
-        </div>
-        <p>Net worth is one measure among several — not the only definition of success.</p>`;
+        <p>${pc.note || "Illustrative estimate, not a forecast — actual APRs, fees, and balances vary."}</p>`;
     }
 
     if (episode.simulatorConfig) {
@@ -324,6 +392,16 @@
         </div>
         <button class="btn btn-outline" id="run-sim-btn">Update estimate</button>
         <div id="sim-results"></div>
+        <details class="calculator-widget__guide">
+          <summary>How this is calculated</summary>
+          <ol>
+            <li>Start with the starting balance.</li>
+            <li>Each month, add the monthly contribution, then apply that illustration's assumed annual return (lower 4%, middle 7%, higher 9%) minus the fee percentage, divided across 12 months.</li>
+            <li>Repeat for the selected number of years to get a nominal ending balance.</li>
+            <li>Divide the nominal ending balance by (1 + assumed inflation rate) raised to the number of years, to estimate today's purchasing power.</li>
+            <li>Compare all three illustrations side by side — none is a prediction of any individual's actual result.</li>
+          </ol>
+        </details>
       `;
       const run = () => {
         const assumptions = {
@@ -346,9 +424,9 @@
       run();
     }
 
-    if (episode.compositeVignettes) {
-      container.innerHTML += `<h2>Composite scenarios</h2>` +
-        episode.compositeVignettes.map((v) => `<p><strong>${v.label}:</strong> ${v.description}</p>`).join("");
+    if (episode.illustrativeVignettes) {
+      container.innerHTML += `<h2>Illustrative scenarios</h2>` +
+        episode.illustrativeVignettes.map((v) => `<p><strong>${resolveText(v.label)}:</strong> ${resolveText(v.description)}</p>`).join("");
     }
   }
 </script>

@@ -1,6 +1,6 @@
 // Ram Ready Financial Futures — Future Wealth Quest, Tier I & Tier II (q01-q10)
 // Advanced, optional path. Wealth tiers describe SYSTEMS to understand, not a
-// ranking of human worth. All real-world examples are fictional composites.
+// ranking of human worth. All real-world examples are fictional illustrations, not real people or organizations.
 
 export const QUESTS_PART1 = [
   {
@@ -19,7 +19,7 @@ export const QUESTS_PART1 = [
     personalizationSlots: [],
     approvedStoryFragments: [],
     scenario: {
-      prompt: "A composite household reports a $1.2 million net worth. Their assets: a $380,000 home (with a $210,000 mortgage), $340,000 in a 401(k), $90,000 in a taxable brokerage account, $60,000 in a business they co-own, and $18,000 in checking and savings. How should a learner interpret this household's ability to cover a sudden $15,000 expense?",
+      prompt: "A fictional household reports a $1.2 million net worth. Their assets: a $380,000 home (with a $210,000 mortgage), $340,000 in a 401(k), $90,000 in a taxable brokerage account, $60,000 in a business they co-own, and $18,000 in checking and savings. How should a learner interpret this household's ability to cover a sudden $15,000 expense?",
       type: "multiple_choice"
     },
     choices: [
@@ -78,7 +78,7 @@ export const QUESTS_PART1 = [
       misunderstandingRisk: "Assuming a stated net worth is available to spend, gift, or borrow against without cost or delay.",
       verifyNote: "Household wealth distribution data changes over time — check the Federal Reserve's Survey of Consumer Finances for current figures."
     },
-    realWorldExample: "A composite small-business owner in this quest has a $1.4 million net worth, but $900,000 of it is equity in their own company. When a family emergency requires $40,000 in cash, they cannot simply withdraw it — they must borrow against the business or use a line of credit, incurring interest they hadn't planned for.",
+    realWorldExample: "A fictional small-business owner in this quest has a $1.4 million net worth, but $900,000 of it is equity in their own company. When a family emergency requires $40,000 in cash, they cannot simply withdraw it — they must borrow against the business or use a line of credit, incurring interest they hadn't planned for.",
     knowledgeChecks: [
       { id: "kc1", question: "Which of these best describes net worth?", type: "multiple_choice",
         options: ["Total cash in checking and savings", "Total assets minus total liabilities", "Annual salary before taxes", "The value of a person's home only"],
@@ -108,11 +108,11 @@ export const QUESTS_PART1 = [
       "Compare salary, bonus, and equity compensation as different risk profiles",
       "Explain how concentration and career risk affect high earners specifically"
     ],
-    openingNarrative: "A high salary buys options. It does not automatically build wealth. This quest follows two composite professionals earning similar six-figure incomes down very different net-worth paths — and asks {{name}} to figure out why.",
+    openingNarrative: "A high salary buys options. It does not automatically build wealth. This quest follows two fictional professionals earning similar six-figure incomes down very different net-worth paths — and asks {{name}} to figure out why.",
     personalizationSlots: ["q02.context"],
     approvedStoryFragments: ["q02.context"],
     scenario: {
-      prompt: "Two composite professionals each earn $180,000 a year. One saves and invests 20% of gross income consistently; the other spends close to their full take-home pay on an upgraded lifestyle, assuming raises will 'catch up' their savings later. Which factor most determines their net worth gap after 15 years?",
+      prompt: "Two fictional professionals each earn $180,000 a year. One saves and invests 20% of gross income consistently; the other spends close to their full take-home pay on an upgraded lifestyle, assuming raises will 'catch up' their savings later. Which factor most determines their net worth gap after 15 years?",
       type: "multiple_choice"
     },
     choices: [
@@ -159,7 +159,7 @@ export const QUESTS_PART1 = [
       b: "A disciplined saving rate, sustained over a career, is one of the most reliable levers in personal finance, though not the only one.",
       c: "Market returns matter over decades, but attributing outcomes to luck alone can discourage saving that would still help."
     },
-    recoveryPath: "The learner can revisit the scenario and model a third composite professional who raises their saving rate mid-career after a wake-up moment, to see how much of the gap can still close.",
+    recoveryPath: "The learner can revisit the scenario and model a third fictional professional who raises their saving rate mid-career after a wake-up moment, to see how much of the gap can still close.",
     conceptExplanation: {
       what: "Lifestyle inflation is the tendency to increase spending as income rises, often keeping the savings rate flat or declining.",
       why: "It happens because visible affordability (a bigger apartment, a newer car) rises faster than awareness of the tradeoff being made.",
@@ -171,7 +171,7 @@ export const QUESTS_PART1 = [
       misunderstandingRisk: "Believing that a bigger paycheck automatically means more financial security.",
       verifyNote: "General wealth and savings-rate patterns can be cross-checked against Federal Reserve household survey data."
     },
-    realWorldExample: "A composite mid-career engineer earning $210,000 a year maintains the same modest apartment and car from their $60,000-a-year first job, directing the difference into retirement and brokerage accounts. A composite peer at the same salary upgrades housing, vehicles, and travel with every raise and reaches age 45 with substantial income history but minimal savings.",
+    realWorldExample: "A fictional mid-career engineer earning $210,000 a year maintains the same modest apartment and car from their $60,000-a-year first job, directing the difference into retirement and brokerage accounts. A fictional peer at the same salary upgrades housing, vehicles, and travel with every raise and reaches age 45 with substantial income history but minimal savings.",
     knowledgeChecks: [
       { id: "kc1", question: "What is 'lifestyle inflation'?", type: "multiple_choice",
         options: ["A government measure of the cost of living", "Spending that rises alongside income, often reducing the saving rate", "A tax on high earners", "A type of investment fund"],
@@ -180,7 +180,7 @@ export const QUESTS_PART1 = [
       { id: "kc2", question: "In the scenario, what most explained the net worth gap between two equally paid professionals?", type: "multiple_choice",
         options: ["One had a better employer", "One had a higher saving and investing rate", "One paid lower taxes", "One had a college degree and the other did not"],
         correctAnswer: "One had a higher saving and investing rate",
-        explanation: "Both earned the same salary; the consistent saving and investing behavior was the differentiator in this composite scenario." }
+        explanation: "Both earned the same salary; the consistent saving and investing behavior was the differentiator in this fictional scenario." }
     ],
     sourceIds: ["frb-scf", "sec-investing-basics"],
     achievementId: "income-vs-wealth-analyst",
@@ -201,11 +201,11 @@ export const QUESTS_PART1 = [
       "Recognize the roles of agents, managers, and family financial pressure in this income pattern",
       "Compare a short high-earning career to a long stable-earning career on total lifetime wealth"
     ],
-    openingNarrative: "Fame and a big contract look like financial security from the outside. This quest goes inside three fictional composite careers — none of them real people — to see what actually determines whether that money lasts.",
+    openingNarrative: "Fame and a big contract look like financial security from the outside. This quest goes inside three fictional careers — Malik, an athlete, Renee, an entertainer, and Theo, a creator, none of them real people — to see what actually determines whether that money lasts.",
     personalizationSlots: ["q03.context"],
     approvedStoryFragments: ["q03.context"],
     scenario: {
-      prompt: "A composite professional athlete signs a contract paying $2.4 million a year for an expected 4-year career, with real risk of injury ending it early. A composite salaried professional earns $140,000 a year over a stable 35-year career. Both want to retire comfortably. What is the athlete's single biggest planning challenge that the salaried professional does not face in the same way?",
+      prompt: "Malik, a fictional professional athlete, signs a contract paying $2.4 million a year for an expected 4-year career, with real risk of injury ending it early. Camille, a fictional salaried professional, earns $140,000 a year over a stable 35-year career. Both want to retire comfortably. What is Malik's single biggest planning challenge that Camille does not face in the same way?",
       type: "rank_tradeoffs"
     },
     choices: [
@@ -264,7 +264,7 @@ export const QUESTS_PART1 = [
       misunderstandingRisk: "Assuming a large contract or viral success guarantees lasting financial security without active planning.",
       verifyNote: "Career-length and earnings-pattern data for specific professions can be checked against Bureau of Labor Statistics occupational data where available."
     },
-    realWorldExample: "Vignette 1 (athlete): A composite professional athlete earns peak income for 5 years before a career-ending injury, and must fund the next 50 years from that window. Vignette 2 (performer): A composite musician has one viral year of royalty income followed by a decade of unpredictable, much smaller earnings. Vignette 3 (stable comparison): A composite teacher earns modestly but consistently for 30 years and retires with a pension and steady retirement savings — illustrating that a long, stable window can outperform a short, dramatic one in total retirement security.",
+    realWorldExample: "Vignette 1 (athlete): A fictional professional athlete earns peak income for 5 years before a career-ending injury, and must fund the next 50 years from that window. Vignette 2 (performer): A fictional musician has one viral year of royalty income followed by a decade of unpredictable, much smaller earnings. Vignette 3 (stable comparison): A fictional teacher earns modestly but consistently for 30 years and retires with a pension and steady retirement savings — illustrating that a long, stable window can outperform a short, dramatic one in total retirement security.",
     knowledgeChecks: [
       { id: "kc1", question: "Why do some athletic or entertainment careers create unique financial planning challenges?", type: "multiple_choice",
         options: ["Because those careers pay too little", "Because they often compress most lifetime earnings into a short, uncertain window", "Because those careers are not real jobs", "Because entertainers don't pay taxes"],
@@ -298,7 +298,7 @@ export const QUESTS_PART1 = [
     personalizationSlots: ["q04.context"],
     approvedStoryFragments: ["q04.context"],
     scenario: {
-      prompt: "A composite founder's company reports $4 million in annual revenue and is valued by investors at $20 million. The founder personally takes home $95,000 a year in salary, and the company's actual profit after expenses is $310,000. A friend calls the founder a multimillionaire. How accurate is that framing?",
+      prompt: "A fictional founder's company reports $4 million in annual revenue and is valued by investors at $20 million. The founder personally takes home $95,000 a year in salary, and the company's actual profit after expenses is $310,000. A friend calls the founder a multimillionaire. How accurate is that framing?",
       type: "identify_missing_information"
     },
     choices: [
@@ -356,7 +356,7 @@ export const QUESTS_PART1 = [
       misunderstandingRisk: "Treating a company's valuation as equivalent to the owner's spendable net worth.",
       verifyNote: "Private valuations are not publicly regulated the way public securities prices are — treat any single valuation figure as one estimate among several possible ones."
     },
-    realWorldExample: "A composite startup founder owns 40% of a company valued at $20 million after a funding round, giving a paper stake of $8 million. After three more funding rounds bringing in new investors, the founder's ownership percentage falls to 22% due to dilution — even as the company's total valuation grows.",
+    realWorldExample: "A fictional startup founder owns 40% of a company valued at $20 million after a funding round, giving a paper stake of $8 million. After three more funding rounds bringing in new investors, the founder's ownership percentage falls to 22% due to dilution — even as the company's total valuation grows.",
     knowledgeChecks: [
       { id: "kc1", question: "What does a private company valuation represent?", type: "multiple_choice",
         options: ["Guaranteed cash available to the owner", "An estimate of worth, often based on comparables or negotiation", "The total revenue collected that year", "A number set permanently by the government"],
@@ -390,7 +390,7 @@ export const QUESTS_PART1 = [
     personalizationSlots: [],
     approvedStoryFragments: [],
     scenario: {
-      prompt: "A composite business owner is choosing which professional to consult first about restructuring their business and reducing tax exposure. Match each professional to the role most central to their training and license.",
+      prompt: "A fictional business owner is choosing which professional to consult first about restructuring their business and reducing tax exposure. Match each professional to the role most central to their training and license.",
       type: "match_term_to_meaning"
     },
     choices: [
@@ -448,7 +448,7 @@ export const QUESTS_PART1 = [
       misunderstandingRisk: "Assuming that hiring a professional removes the need to understand or question the advice given.",
       verifyNote: "Check any investment professional's background using FINRA BrokerCheck or the SEC's Investment Adviser Public Disclosure database before engaging."
     },
-    realWorldExample: "A composite family business owner hires a CPA who recommends a tax strategy, an attorney who structures the entity, and a fee-only financial planner who checks that both recommendations still serve the family's long-term goals. When the CPA and attorney's initial recommendations conflict slightly, the planner facilitates a joint call that resolves it before either the paperwork is filed.",
+    realWorldExample: "A fictional family business owner hires a CPA who recommends a tax strategy, an attorney who structures the entity, and a fee-only financial planner who checks that both recommendations still serve the family's long-term goals. When the CPA and attorney's initial recommendations conflict slightly, the planner facilitates a joint call that resolves it before either the paperwork is filed.",
     knowledgeChecks: [
       { id: "kc1", question: "Why might it matter whether a financial adviser is a fiduciary?", type: "multiple_choice",
         options: ["Fiduciaries charge lower fees automatically", "A fiduciary is legally required to act in the client's best interest", "Only fiduciaries are allowed to sell insurance", "It doesn't matter — all advisers follow the same standard"],
@@ -482,7 +482,7 @@ export const QUESTS_PART1 = [
     personalizationSlots: ["q06.context"],
     approvedStoryFragments: ["q06.context"],
     scenario: {
-      prompt: "A composite client with $6 million in assets is offered 'private banking' services, including a dedicated relationship manager, preferential loan rates, and concierge scheduling. The client assumes their full $6 million is now protected by deposit insurance because of the private relationship. Evaluate this assumption.",
+      prompt: "A fictional client with $6 million in assets is offered 'private banking' services, including a dedicated relationship manager, preferential loan rates, and concierge scheduling. The client assumes their full $6 million is now protected by deposit insurance because of the private relationship. Evaluate this assumption.",
       type: "detect_misleading_claim"
     },
     choices: [
@@ -540,7 +540,7 @@ export const QUESTS_PART1 = [
       misunderstandingRisk: "Confusing a premium service tier with expanded deposit insurance or guaranteed investment safety.",
       verifyNote: "FDIC and NCUA deposit insurance limits and rules are set by regulation and are publicly documented; SIPC protects securities accounts differently than deposit insurance protects bank accounts."
     },
-    realWorldExample: "A composite client keeps $4 million in a single private banking relationship, assuming the 'private' label implies full protection. After learning about FDIC per-depositor, per-institution limits, their advisor helps restructure the funds across several insured account categories and institutions, keeping the relationship but reducing uninsured exposure.",
+    realWorldExample: "A fictional client keeps $4 million in a single private banking relationship, assuming the 'private' label implies full protection. After learning about FDIC per-depositor, per-institution limits, their advisor helps restructure the funds across several insured account categories and institutions, keeping the relationship but reducing uninsured exposure.",
     knowledgeChecks: [
       { id: "kc1", question: "Does a 'private banking' relationship change the deposit insurance limits on an account?", type: "multiple_choice",
         options: ["Yes, private accounts are fully insured regardless of amount", "No, standard deposit insurance limits and rules still apply", "Only for business accounts", "Only if the bank is foreign-owned"],
@@ -574,7 +574,7 @@ export const QUESTS_PART1 = [
     personalizationSlots: [],
     approvedStoryFragments: [],
     scenario: {
-      prompt: "A composite family with a growing portfolio is deciding how to make future investment decisions. Compare relying on informal, in-the-moment judgment calls versus adopting a written investment policy statement covering goals, risk capacity, and rebalancing rules.",
+      prompt: "A fictional family with a growing portfolio is deciding how to make future investment decisions. Compare relying on informal, in-the-moment judgment calls versus adopting a written investment policy statement covering goals, risk capacity, and rebalancing rules.",
       type: "rank_tradeoffs"
     },
     choices: [
@@ -632,7 +632,7 @@ export const QUESTS_PART1 = [
       misunderstandingRisk: "Believing there is one universally correct allocation that applies regardless of individual goals and risk capacity.",
       verifyNote: "General investing principles like diversification and rebalancing are described at Investor.gov; no specific allocation is endorsed here."
     },
-    realWorldExample: "A composite family writes a policy stating they need 18 months of expenses in cash, will not exceed a defined equity allocation given their risk capacity, and will rebalance annually regardless of market sentiment. During a sharp market downturn, the documented rebalancing rule — rather than emotion — guides their decision, and they avoid selling into the decline.",
+    realWorldExample: "A fictional family writes a policy stating they need 18 months of expenses in cash, will not exceed a defined equity allocation given their risk capacity, and will rebalance annually regardless of market sentiment. During a sharp market downturn, the documented rebalancing rule — rather than emotion — guides their decision, and they avoid selling into the decline.",
     knowledgeChecks: [
       { id: "kc1", question: "What is the main purpose of a written investment policy statement?", type: "multiple_choice",
         options: ["To guarantee a specific investment return", "To document goals, risk capacity, and rules so decisions are consistent rather than reactive", "To avoid paying any investment fees", "To qualify for tax benefits"],
@@ -666,7 +666,7 @@ export const QUESTS_PART1 = [
     personalizationSlots: [],
     approvedStoryFragments: [],
     scenario: {
-      prompt: "A composite investor is offered a stake in a private equity fund with a 10-year lockup period and no ability to withdraw early. The pitch emphasizes strong historical returns of similar funds. What should the investor weigh most heavily before committing?",
+      prompt: "A fictional investor is offered a stake in a private equity fund with a 10-year lockup period and no ability to withdraw early. The pitch emphasizes strong historical returns of similar funds. What should the investor weigh most heavily before committing?",
       type: "compare_total_cost"
     },
     choices: [
@@ -724,7 +724,7 @@ export const QUESTS_PART1 = [
       misunderstandingRisk: "Assuming a private investment's stated valuation between events reflects an amount that could actually be received if sold.",
       verifyNote: "Accredited-investor eligibility rules are set by securities regulation and should be verified with a licensed professional before any private investment."
     },
-    realWorldExample: "A composite investor commits $250,000 to a venture capital fund with a 10-year term. In year 6, a family emergency creates an urgent need for cash, but the investment cannot be sold or withdrawn early — illustrating that even a fund with strong reported performance can create real hardship if liquidity needs aren't planned for separately.",
+    realWorldExample: "A fictional investor commits $250,000 to a venture capital fund with a 10-year term. In year 6, a family emergency creates an urgent need for cash, but the investment cannot be sold or withdrawn early — illustrating that even a fund with strong reported performance can create real hardship if liquidity needs aren't planned for separately.",
     knowledgeChecks: [
       { id: "kc1", question: "What is a 'lockup period' in a private investment?", type: "multiple_choice",
         options: ["A grace period before fees start", "A span of time during which an investor cannot withdraw their capital", "A period when the fund is closed to new investors", "A tax filing deadline"],
@@ -758,7 +758,7 @@ export const QUESTS_PART1 = [
     personalizationSlots: [],
     approvedStoryFragments: [],
     scenario: {
-      prompt: "A composite business owner has W-2 salary from their own company, 1099 consulting income, rental income from a property, and capital gains from investments. An acquaintance suggests they could simply not report some cash consulting income since 'no one would notice.' How should the owner respond?",
+      prompt: "A fictional business owner has W-2 salary from their own company, 1099 consulting income, rental income from a property, and capital gains from investments. An acquaintance suggests they could simply not report some cash consulting income since 'no one would notice.' How should the owner respond?",
       type: "detect_misleading_claim"
     },
     choices: [
@@ -816,7 +816,7 @@ export const QUESTS_PART1 = [
       misunderstandingRisk: "Believing that unreported cash income is a legitimate or low-risk way to reduce taxes. It is not — this is evasion and illegal.",
       verifyNote: "Tax rules, forms, and deadlines change; consult IRS.gov and a qualified tax professional for current requirements."
     },
-    realWorldExample: "A composite consultant with W-2, 1099, and rental income works with a CPA to make quarterly estimated payments and track deductible expenses with receipts and a simple ledger. When a minor discrepancy triggers an IRS inquiry two years later, the maintained records resolve it without penalty.",
+    realWorldExample: "A fictional consultant with W-2, 1099, and rental income works with a CPA to make quarterly estimated payments and track deductible expenses with receipts and a simple ledger. When a minor discrepancy triggers an IRS inquiry two years later, the maintained records resolve it without penalty.",
     knowledgeChecks: [
       { id: "kc1", question: "Is failing to report cash income because 'no one would notice' a legitimate tax strategy?", type: "multiple_choice",
         options: ["Yes, if the amount is small", "No — all income must be reported regardless of form or traceability", "Yes, if it's under a certain dollar threshold", "Only self-employed people have to report cash income"],
@@ -850,7 +850,7 @@ export const QUESTS_PART1 = [
     personalizationSlots: ["q10.context"],
     approvedStoryFragments: ["q10.context"],
     scenario: {
-      prompt: "A composite couple is told by an acquaintance that 'putting everything in a trust' will automatically avoid all estate taxes and eliminate the need for a will. Evaluate this claim before they act on it.",
+      prompt: "A fictional couple is told by an acquaintance that 'putting everything in a trust' will automatically avoid all estate taxes and eliminate the need for a will. Evaluate this claim before they act on it.",
       type: "detect_misleading_claim"
     },
     choices: [
@@ -908,7 +908,7 @@ export const QUESTS_PART1 = [
       misunderstandingRisk: "Believing that any single tool (a trust, a life insurance policy) automatically eliminates taxes or the need for other planning documents.",
       verifyNote: "Estate and gift tax rules and exclusion amounts change over time — verify current rules at IRS.gov and with a qualified estate-planning attorney."
     },
-    realWorldExample: "A composite family sets up a trust believing it alone will handle everything, but later learns through an attorney that they still needed a pour-over will, updated beneficiary designations on retirement accounts, and a power of attorney for healthcare decisions — the trust was one piece of a larger, coordinated plan.",
+    realWorldExample: "A fictional family sets up a trust believing it alone will handle everything, but later learns through an attorney that they still needed a pour-over will, updated beneficiary designations on retirement accounts, and a power of attorney for healthcare decisions — the trust was one piece of a larger, coordinated plan.",
     knowledgeChecks: [
       { id: "kc1", question: "Does setting up a trust automatically eliminate the need for a will?", type: "multiple_choice",
         options: ["Yes, always", "No — a will and other documents may still be needed depending on the situation", "Only in some states", "Trusts and wills serve the exact same purpose"],

@@ -106,5 +106,29 @@ export const CALCULATOR_META = {
     label: "Road-to-$1.5-Million Scenario Builder",
     formula: "Projects account balance across selected years using the compound-growth formula under three named illustration cases.",
     sourceIds: ["sec-compound-interest-calc", "frb-scf"]
+  },
+  bankFeeAnnualCost: {
+    id: "bank-fee-annual-cost",
+    label: "Bank-Fee Annual-Cost Calculator",
+    formula: "Annual fee cost = (Monthly maintenance fee x 12) + (Overdraft fee x expected overdrafts per year) + Other annual fees",
+    sourceIds: ["cfpb-bank-accounts", "fdic-money-smart"]
+  },
+  transportationTotalCost: {
+    id: "transportation-total-cost",
+    label: "Transportation Total-Cost Calculator",
+    formula: "Monthly total cost = Loan or lease payment + Insurance + Fuel or fares + Maintenance (averaged)",
+    sourceIds: ["cfpb-your-money-your-goals"]
+  },
+  debtAvalancheSnowball: {
+    id: "debt-avalanche-snowball",
+    label: "Debt Avalanche vs. Snowball Comparison",
+    formula: "Simulates paying minimums on every balance while directing extra payment to either the highest-APR balance (avalanche) or the lowest-balance debt (snowball) first.",
+    sourceIds: ["cfpb-credit-reports-scores"]
+  },
+  marginCallStressTest: {
+    id: "margin-call-stress-test",
+    label: "Borrowing-Against-Assets Stress Test",
+    formula: "Loan-to-value = Loan amount ÷ Portfolio value after an assumed market decline; a margin call occurs when remaining equity falls below the lender's maintenance requirement.",
+    sourceIds: ["finra-margin", "sec-investing-basics"]
   }
 };

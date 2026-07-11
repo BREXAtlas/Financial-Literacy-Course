@@ -108,7 +108,7 @@ export const EPISODES_PART1 = [
       verifyNote: "This is a general decision-making framework, not financial advice tailored to any individual's circumstances."
     },
     realWorldExample:
-      "A composite first-year student, Jordan, took an unpaid internship over a higher-paying retail job because Jordan valued a specific industry connection. A year later, that connection led to a paid role — but Jordan also acknowledges it could easily have not worked out, and that the retail income would have been just as legitimate a choice.",
+      "Jordan, a fictional first-year mass media major, took an unpaid internship over a higher-paying retail job because Jordan valued a specific industry connection. A year later, that connection led to a paid role — but Jordan also acknowledges it could easily have not worked out, and that the retail income would have been just as legitimate a choice. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -138,6 +138,7 @@ export const EPISODES_PART1 = [
     title: "Where Money Lives",
     subtitle: "Banks, credit unions, and choosing an account you can trust",
     estimatedMinutes: 12,
+    calculatorType: "bankFee",
     learningObjectives: [
       "Compare banks and credit unions as places to hold money",
       "Distinguish checking and savings accounts by purpose",
@@ -236,7 +237,7 @@ export const EPISODES_PART1 = [
       verifyNote: "Insurance limits and rules can change — always verify current coverage details directly with FDIC or NCUA."
     },
     realWorldExample:
-      "A composite student, Priya, used FDIC BankFind to confirm her chosen digital bank's deposits were held at an FDIC-insured partner bank before moving her financial aid refund there.",
+      "Priya, a fictional biology major, used FDIC BankFind to confirm her chosen digital bank's deposits were held at an FDIC-insured partner bank before moving her financial aid refund there. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -363,7 +364,7 @@ export const EPISODES_PART1 = [
       verifyNote: "Withholding tables, tax brackets, and Form W-4 details change; always check current guidance at irs.gov before filing."
     },
     realWorldExample:
-      "A composite student, Marcus, worked two part-time jobs and used the IRS Tax Withholding Estimator after his first year to fix under-withholding that had caused an unexpected balance due.",
+      "Marcus, a fictional exercise science major, worked two part-time jobs and used the IRS Tax Withholding Estimator after his first year to fix under-withholding that had caused an unexpected balance due. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -490,7 +491,7 @@ export const EPISODES_PART1 = [
       verifyNote: "This overview compares general budgeting frameworks, not personalized financial planning."
     },
     realWorldExample:
-      "A composite student, Aisha, tried a detailed app-based system, found it exhausting within a month, and switched to a simple three-category percentage split that she has maintained for two years.",
+      "Aisha, a fictional accounting major, tried a detailed app-based system, found it exhausting within a month, and switched to a simple three-category percentage split that she has maintained for two years. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -520,6 +521,7 @@ export const EPISODES_PART1 = [
     title: "Credit Is a Contract, Not Free Money",
     subtitle: "Reading the real cost of borrowing",
     estimatedMinutes: 15,
+    calculatorType: "debtAvalancheSnowball",
     learningObjectives: [
       "Explain what a credit report and credit score generally represent",
       "Define APR, minimum payments, and utilization",
@@ -626,7 +628,7 @@ export const EPISODES_PART1 = [
       verifyNote: "Interest rates, fees, and credit reporting practices vary by issuer and change over time — always review your actual card agreement."
     },
     realWorldExample:
-      "A composite student, Devon, used a card only for gas and paid it off every month; two years later, that history helped Devon qualify for a lower-rate auto loan.",
+      "Devon, a fictional computer science major, used a card only for gas and paid it off every month; two years later, that history helped Devon qualify for a lower-rate auto loan. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -765,7 +767,7 @@ export const EPISODES_PART1 = [
       verifyNote: "This is general guidance, not a personalized assessment of how much any individual should save."
     },
     realWorldExample:
-      "A composite student, Elena, had no emergency savings when her phone broke and she needed it for work scheduling; a campus emergency fund covered half the replacement cost while she paid the rest over two paychecks.",
+      "Elena, a fictional social work major, had no emergency savings when her phone broke and she needed it for work scheduling; a campus emergency fund covered half the replacement cost while she paid the rest over two paychecks. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -795,6 +797,7 @@ export const EPISODES_PART1 = [
     title: "The Real Cost of Getting Around",
     subtitle: "Total ownership cost versus sticker price",
     estimatedMinutes: 13,
+    calculatorType: "transportation",
     learningObjectives: [
       "Distinguish purchase price from total cost of ownership",
       "Identify components of vehicle cost: interest, insurance, repairs, fuel, registration, depreciation",
@@ -891,7 +894,7 @@ export const EPISODES_PART1 = [
       verifyNote: "Actual costs vary significantly by location, vehicle, insurance history, and lender terms."
     },
     realWorldExample:
-      "A composite student, Sam, initially planned to buy a car but ran the total-cost numbers and realized a transit pass plus occasional ride-shares cost roughly a third as much for his specific commute.",
+      "Sam, a fictional civil engineering major, initially planned to buy a car but ran the total-cost numbers and realized a transit pass plus occasional ride-shares cost roughly a third as much for his specific commute. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -1002,7 +1005,7 @@ export const EPISODES_PART1 = [
       verifyNote: "BLS data reflects historical ranges and projections, not guarantees for any individual, and updates periodically — check bls.gov/ooh for current figures."
     },
     realWorldExample:
-      "A composite student, Taylor, compared BLS earnings ranges for two fields of interest before choosing a major, while acknowledging the ranges were historical data, not a promise.",
+      "Taylor, a fictional psychology major, compared BLS earnings ranges for two fields of interest before choosing a major, while acknowledging the ranges were historical data, not a promise. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -1115,7 +1118,7 @@ export const EPISODES_PART1 = [
       verifyNote: "Current tax brackets, standard deduction amounts, and filing thresholds change; always verify current figures directly at irs.gov before filing."
     },
     realWorldExample:
-      "A composite student, Noah, was surprised by a balance due after his first year of freelance tutoring income; the next year, he set aside a portion of each payment and had no surprise at filing time.",
+      "Noah, a fictional animal science major, was surprised by a balance due after his first year of freelance tutoring income; the next year, he set aside a portion of each payment and had no surprise at filing time. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -1227,7 +1230,7 @@ export const EPISODES_PART1 = [
       verifyNote: "Contribution limits, vesting rules, and benefit details vary by employer and by year — review the specific plan documents for any real offer."
     },
     realWorldExample:
-      "A composite graduate, Chris, initially wanted to take the higher-salary offer, but after calculating the multi-year value of the retirement match and better health coverage, chose the other offer instead.",
+      "Chris, a fictional recent nursing-program graduate, initially wanted to take the higher-salary offer, but after calculating the multi-year value of the retirement match and better health coverage, chose the other offer instead. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",

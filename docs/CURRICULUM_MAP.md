@@ -54,3 +54,9 @@ and `data/wealth-quests.js`. See `data/source-registry.js` for full source detai
 | q20 | IV | The Multi-Billion-Dollar Boardroom | frb-scf |
 
 Full source-per-episode mapping is available programmatically via each episode/quest object's `sourceIds` field.
+
+## Visualizations
+
+Every episode and quest above has exactly one structured visualization in `data/visualizations.js`
+(`EPISODE_VISUALIZATIONS` / `QUEST_VISUALIZATIONS`), rendered by the shared `assets/visualization-engine.js`.
+See `docs/VISUALIZATION_SYSTEM.md` for the rendering model and the full topic-by-topic list.

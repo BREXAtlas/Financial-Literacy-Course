@@ -16,6 +16,14 @@
 Each source has: `id`, `title`, `org`, `url`, `topic`, `concepts`, `classification` (`primary`/`secondary`),
 `reviewed` (date), and optional `notes` about volatility. See `data/source-registry.js`.
 
+## Visualizations and calculators
+
+Every entry in `data/visualizations.js` and every calculator in `data/calculator-assumptions.js` /
+`assets/calculator-engine.js` must carry `sourceIds` resolving to `data/source-registry.js`, a plain-language
+`assumptions` list (or `limitations`), and a review date. `scripts/validate-site.mjs` fails the build if any of
+these are missing or reference an unknown source id. Added for this pass: `finra-margin` (FINRA's Margin
+Accounts explainer, used by the borrowing-against-assets stress test and quest 14's visualization).
+
 ## Neutrality
 
 No source or fact may be framed to favor a specific financial product, institution, or provider. Comparisons

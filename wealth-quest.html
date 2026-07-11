@@ -39,13 +39,14 @@
     </section>
     <section>
       <h2>Concept</h2>
-      <dl id="quest-concept"></dl>
+      <div id="quest-concept"></div>
     </section>
     <section>
       <h2 id="quest-scenario-prompt"></h2>
       <ul class="choice-list" id="quest-choice-list"></ul>
-      <div class="consequence-panel" id="quest-consequence-panel" hidden></div>
     </section>
+    <section id="quest-visualization" class="section"></section>
+    <section id="quest-calculator" class="section"></section>
     <section id="quest-special-widget" class="section"></section>
     <section id="scoring-section" hidden>
       <h2>Systems scoring (not just money remaining)</h2>
@@ -73,6 +74,13 @@
   import { celebrate } from "./assets/game-engine.js";
   import { renderAccessibleListAlternative } from "./assets/accessibility.js";
   import { loadState } from "./assets/profile-engine.js";
+  import { renderChoiceCards } from "./assets/choice-cards.js";
+  import { resolveTokens } from "./assets/personalization-engine.js";
+  import { renderConceptSection } from "./assets/concept-section.js";
+  import { renderVisualization } from "./assets/visualization-engine.js";
+  import { getVisualizationForQuest } from "./data/visualizations.js";
+  import * as calc from "./assets/calculator-engine.js";
+  import { renderCalculatorWidget } from "./assets/calculator-widget.js";
 
   initPage("wealth-quest.html");
 
@@ -135,72 +143,44 @@
     document.getElementById("quest-subtitle").textContent = quest.subtitle;
 
     const profile = currentProfile();
+    const resolveText = (text) => resolveTokens(text, profile);
     document.getElementById("quest-narrative").textContent = await renderQuestNarrative(quest, profile, useGenericStory);
-    document.getElementById("quest-realworld").textContent = quest.realWorldExample;
+    document.getElementById("quest-realworld").textContent = resolveText(quest.realWorldExample);
 
-    const conceptEl = document.getElementById("quest-concept");
-    conceptEl.innerHTML = "";
-    const c = quest.conceptExplanation || {};
-    const rows = [
-      ["What", c.what], ["Why it exists", c.why], ["How it may help", c.how], ["What it may cost", c.cost],
-      ["Risks or limitations", c.risks], ["Who may benefit", c.whoMayBenefit], ["Who may not benefit", c.whoMayNotBenefit],
-      ["When misunderstood", c.misunderstandingRisk], ["Verify", c.verifyNote]
-    ];
-    for (const [label, value] of rows) {
-      if (!value) continue;
-      const dt = document.createElement("dt"); dt.textContent = label;
-      const dd = document.createElement("dd"); dd.textContent = value;
-      conceptEl.appendChild(dt); conceptEl.appendChild(dd);
+    renderConceptSection(document.getElementById("quest-concept"), quest.conceptExplanation, resolveText);
+
+    const questViz = getVisualizationForQuest(quest.id);
+    if (questViz) {
+      renderVisualization(document.getElementById("quest-visualization"), questViz, resolveText);
+    } else {
+      document.getElementById("quest-visualization").innerHTML = "";
     }
 
+    renderQuestCalculator(quest);
+
     const specialWidget = document.getElementById("quest-special-widget");
-    specialWidget.innerHTML = quest.compositeVignettes
-      ? "<h2>Composite scenarios</h2>" + quest.compositeVignettes.map((v) => `<p><strong>${v.label}:</strong> ${v.description}</p>`).join("")
+    specialWidget.innerHTML = quest.illustrativeVignettes
+      ? "<h2>Illustrative scenarios</h2>" + quest.illustrativeVignettes.map((v) => `<p><strong>${resolveText(v.label)}:</strong> ${resolveText(v.description)}</p>`).join("")
       : "";
 
-    document.getElementById("quest-scenario-prompt").textContent = quest.scenario?.prompt || "Make a choice";
+    document.getElementById("quest-scenario-prompt").textContent = resolveText(quest.scenario?.prompt) || "Make a choice";
     const choiceList = document.getElementById("quest-choice-list");
-    choiceList.innerHTML = "";
     let scenarioComplete = false;
     let knowledgeCheckPassed = false;
 
-    for (const choice of quest.choices || []) {
-      const li = document.createElement("li");
-      li.className = "choice-card";
-      li.innerHTML = `
-        <p><strong>${choice.text}</strong></p>
-        <p><em>Why someone might choose this:</em> ${choice.whyChosen}</p>
-        <p><em>Possible benefit:</em> ${choice.possibleBenefit}</p>
-        <p><em>Possible cost:</em> ${choice.possibleCost}</p>
-        <p><em>Possible risk:</em> ${choice.possibleRisk}</p>
-        <button class="btn btn-outline choose-btn" data-choice-id="${choice.id}">Choose this</button>
-      `;
-      choiceList.appendChild(li);
-    }
-
-    choiceList.addEventListener("click", (e) => {
-      const btn = e.target.closest(".choose-btn");
-      if (!btn) return;
-      const choiceId = btn.dataset.choiceId;
-      const choice = quest.choices.find((c2) => c2.id === choiceId);
-      submitChoice(quest.id, choiceId);
-      scenarioComplete = true;
-      const panel = document.getElementById("quest-consequence-panel");
-      panel.hidden = false;
-      panel.innerHTML = `
-        <p><strong>Right away:</strong> ${quest.immediateConsequences?.[choiceId] || ""}</p>
-        <p><strong>One year later:</strong> ${quest.oneYearConsequences?.[choiceId] || ""}</p>
-        <p><strong>Long term:</strong> ${quest.longTermConsequences?.[choiceId] || ""}</p>
-        <p><strong>What could change this outcome:</strong> ${choice.whatCouldChangeThisOutcome}</p>
-        <p><strong>If this didn't go the way you hoped:</strong> ${quest.recoveryPath}</p>
-      `;
-      if (quest.scoringDimensions) {
-        document.getElementById("scoring-section").hidden = false;
-        document.getElementById("scoring-list").innerHTML = quest.scoringDimensions
-          .map((d) => `<li><strong>${d.label}:</strong> ${d.description}</li>`).join("");
-        document.getElementById("closing-reflection").textContent = quest.closingReflection || "";
+    renderChoiceCards(choiceList, quest.choices || [], quest, {
+      resolveText,
+      onChoose: (choice) => {
+        submitChoice(quest.id, choice.id);
+        scenarioComplete = true;
+        if (quest.scoringDimensions) {
+          document.getElementById("scoring-section").hidden = false;
+          document.getElementById("scoring-list").innerHTML = quest.scoringDimensions
+            .map((d) => `<li><strong>${resolveText(d.label)}:</strong> ${resolveText(d.description)}</li>`).join("");
+          document.getElementById("closing-reflection").textContent = resolveText(quest.closingReflection || "");
+        }
+        renderKnowledgeCheck();
       }
-      renderKnowledgeCheck();
     });
 
     function renderKnowledgeCheck() {
@@ -211,12 +191,12 @@
       for (const kc of quest.knowledgeChecks || []) {
         const wrap = document.createElement("div");
         wrap.innerHTML = `
-          <p>${kc.question}</p>
+          <p>${resolveText(kc.question)}</p>
           <div class="option-grid">
-            ${kc.options.map((o) => `<label><input type="radio" name="${kc.id}" value="${o}"> ${o}</label>`).join("")}
+            ${kc.options.map((o) => `<label><input type="radio" name="${kc.id}" value="${o}"> ${resolveText(o)}</label>`).join("")}
           </div>
           <button class="btn btn-outline" data-kc="${kc.id}">Check answer</button>
-          <p class="kc-explanation" hidden></p>
+          <p class="kc-explanation" aria-live="polite" hidden></p>
         `;
         body.appendChild(wrap);
         wrap.querySelector("button").addEventListener("click", () => {
@@ -225,9 +205,9 @@
           explanationEl.hidden = false;
           if (selected && selected.value === kc.correctAnswer) {
             knowledgeCheckPassed = true;
-            explanationEl.textContent = `Correct. ${kc.explanation}`;
+            explanationEl.textContent = `Correct. ${resolveText(kc.explanation)}`;
           } else {
-            explanationEl.textContent = `Not quite — the answer is "${kc.correctAnswer}." ${kc.explanation}`;
+            explanationEl.textContent = `Not quite — the answer is "${resolveText(kc.correctAnswer)}." ${resolveText(kc.explanation)}`;
           }
           document.getElementById("continue-quest-btn").hidden = false;
         });
@@ -247,6 +227,41 @@
         window.location.href = quest.unlocks ? `wealth-quest.html?q=${quest.unlocks}` : "journey.html";
       }, 1400);
     }, { once: true });
+  }
+
+  function renderQuestCalculator(quest) {
+    const container = document.getElementById("quest-calculator");
+    container.innerHTML = "";
+    if (quest.calculatorType === "marginCallStressTest") {
+      renderCalculatorWidget(container, {
+        id: "margin-call",
+        title: "Try it: borrowing-against-assets stress test",
+        description: "See how a market decline can turn a comfortable loan-to-value ratio into a margin call.",
+        inputs: [
+          { key: "portfolioValue", label: "Starting portfolio value ($)", default: 1000000 },
+          { key: "loanAmount", label: "Loan amount ($)", default: 400000 },
+          { key: "maintenanceThresholdPct", label: "Lender maintenance equity requirement (%)", default: 30 },
+          { key: "marketDropPct", label: "Assumed market drop (%)", default: 30 }
+        ],
+        compute: calc.marginCallStressTest,
+        renderResult: (r) => `
+          <table>
+            <tr><th>Portfolio value after drop</th><td>$${r.result.stressedValue.toLocaleString()}</td></tr>
+            <tr><th>Loan-to-value ratio</th><td>${r.result.loanToValuePct}%</td></tr>
+            <tr><th>Remaining equity</th><td>$${r.result.equity.toLocaleString()}</td></tr>
+            <tr><th>Margin call triggered?</th><td>${r.result.marginCall ? `Yes — deposit or sell about $${r.result.shortfall.toLocaleString()}` : "No, under these assumptions"}</td></tr>
+          </table>`,
+        guideSteps: [
+          "Apply the assumed market drop to the starting portfolio value.",
+          "Divide the loan amount by the post-drop portfolio value to get the new loan-to-value ratio.",
+          "Subtract the loan amount from the post-drop value to find remaining equity.",
+          "Compare remaining equity to the lender's maintenance requirement (the post-drop value times the required percentage).",
+          "If equity falls short, a margin call requires depositing cash, adding collateral, or the lender selling assets."
+        ],
+        sourceIds: ["finra-margin", "sec-investing-basics"],
+        reviewedDate: "2026-07-10"
+      });
+    }
   }
 </script>
 </body>

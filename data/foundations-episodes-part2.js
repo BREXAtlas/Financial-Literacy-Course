@@ -102,7 +102,7 @@ export const EPISODES_PART2 = [
       misunderstandingRisk: "Assuming a high net worth means high cash on hand, or that a negative net worth early in adulthood is unusual or shameful.",
       verifyNote: "Consult current CFPB financial-planning tools for updated worksheets and definitions."
     },
-    realWorldExample: "A composite recent graduate has $2,000 in savings, a 10-year-old car worth $4,000, and $28,000 in student loans. Their net worth is negative, even though they have income and a car — a common and temporary starting position for many young adults.",
+    realWorldExample: "Reagan, a fictional recent graduate, has $2,000 in savings, a 10-year-old car worth $4,000, and $28,000 in student loans. Reagan's net worth is negative, even though there is income and a car — a common and temporary starting position for many young adults. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -217,7 +217,7 @@ export const EPISODES_PART2 = [
       misunderstandingRisk: "Assuming any of these tools guarantees a real (inflation-adjusted) gain, or that a Treasury bill can never lose value if sold before maturity.",
       verifyNote: "Check current FDIC/NCUA insurance limits and current Treasury bill rates before making decisions."
     },
-    realWorldExample: "A composite saver splits an emergency fund between a savings account for full access and a short Treasury bill ladder for the portion not needed immediately, balancing liquidity and return.",
+    realWorldExample: "Harper, a fictional saver, splits an emergency fund between a savings account for full access and a short Treasury bill ladder for the portion not needed immediately, balancing liquidity and return. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -337,7 +337,7 @@ export const EPISODES_PART2 = [
       misunderstandingRisk: "Assuming stocks always go up over any given period, or that a bond is automatically 'safe' regardless of interest-rate movement or issuer quality.",
       verifyNote: "This course does not recommend individual securities. See Investor.gov for neutral, foundational explanations."
     },
-    realWorldExample: "A composite investor holds a diversified index fund for retirement money with a decades-long horizon, while keeping near-term savings in cash tools — illustrating how time horizon shapes investment choice, not universal rules.",
+    realWorldExample: "Casey, a fictional investor, holds a diversified index fund for retirement money with a decades-long horizon, while keeping near-term savings in cash tools — illustrating how time horizon shapes investment choice, not universal rules. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -457,7 +457,7 @@ export const EPISODES_PART2 = [
       misunderstandingRisk: "Believing 'an LLC automatically protects everything' regardless of how the business is run.",
       verifyNote: "Verify current state filing fees and requirements directly with the Texas Secretary of State or SBA.gov, since fees and rules change."
     },
-    realWorldExample: "A composite small-business owner formed an LLC but kept mixing personal and business funds; in a lawsuit, the mixing became evidence used to challenge the liability protection — illustrating why the entity alone is not enough.",
+    realWorldExample: "Morgan, a fictional owner of a small pet-grooming business, formed an LLC but kept mixing personal and business funds; in a lawsuit, the mixing became evidence used to challenge the liability protection — illustrating why the entity alone is not enough. This illustrative example is not a real person or business.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -572,7 +572,7 @@ export const EPISODES_PART2 = [
       misunderstandingRisk: "Assuming that business revenue is automatically available as personal spending money without accounting for expenses, taxes, and reserves.",
       verifyNote: "See SBA.gov guidance on opening a business bank account for current, practical steps."
     },
-    realWorldExample: "A composite freelancer paid personal rent directly from client payments deposited into one account; when a client dispute arose, it was difficult to prove which funds were business income, complicating both taxes and the dispute.",
+    realWorldExample: "Alex, a fictional freelance graphic designer, paid personal rent directly from client payments deposited into one account; when a client dispute arose, it was difficult to prove which funds were business income, complicating both taxes and the dispute. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -692,7 +692,7 @@ export const EPISODES_PART2 = [
       misunderstandingRisk: "Believing 'renting is throwing money away' or that buying a home is always the superior financial choice — both ignore opportunity cost and individual circumstances.",
       verifyNote: "Local market data, mortgage rates, and property tax rates vary significantly and should be checked directly for a specific location."
     },
-    realWorldExample: "Two composite friends in the same city made different choices: one bought and built equity over a stable decade; the other rented and invested the cost difference, moving twice for better job offers. Both approaches produced reasonable outcomes given their circumstances.",
+    realWorldExample: "Two fictional friends, Riley and Quinn, in the same city made different choices: Riley bought and built equity over a stable decade, while Quinn rented and invested the cost difference, moving twice for better job offers. Both approaches produced reasonable outcomes given their circumstances. This illustrative example is not based on real people.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -812,7 +812,7 @@ export const EPISODES_PART2 = [
       misunderstandingRisk: "Assuming any single insurance product is a one-size-fits-all necessity, or that legitimate institutions ask for sensitive information via unsolicited text or email.",
       verifyNote: "This course does not recommend a specific insurance product — compare options and consult a licensed professional for personal circumstances."
     },
-    realWorldExample: "A composite renter without renters insurance lost most belongings in an apartment fire with no coverage, while a neighbor with a low-cost renters policy was reimbursed for the bulk of their losses — illustrating the value of even modest, targeted coverage.",
+    realWorldExample: "Sydney, a fictional renter without renters insurance, lost most belongings in an apartment fire with no coverage, while a neighbor with a low-cost renters policy was reimbursed for the bulk of their losses — illustrating the value of even modest, targeted coverage. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -932,7 +932,7 @@ export const EPISODES_PART2 = [
       misunderstandingRisk: "Assuming marriage, homeownership, or parenthood is a universal life goal, or that cosigning is a low-risk favor.",
       verifyNote: "Review CFPB resources on cosigning and credit reporting for current consumer protections."
     },
-    realWorldExample: "A composite parent cosigned a car loan for their adult child; when payments were missed, the parent's own credit score dropped significantly, despite never driving the car — illustrating that cosigning risk is real regardless of intention.",
+    realWorldExample: "Pat, a fictional parent, cosigned a car loan for an adult child; when payments were missed, Pat's own credit score dropped significantly, despite never driving the car — illustrating that cosigning risk is real regardless of intention. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -1061,7 +1061,7 @@ export const EPISODES_PART2 = [
       misunderstandingRisk: "Treating net worth as the sole measure of financial success or personal worth.",
       verifyNote: "Use reputable, privacy-respecting tools, and verify how any third-party financial app stores and protects your data."
     },
-    realWorldExample: "A composite professional with an average net worth but strong emergency savings, solid insurance, and low stress reported higher overall financial wellbeing than a higher-net-worth peer carrying high debt and no protection — illustrating why net worth alone is an incomplete measure.",
+    realWorldExample: "Drew, a fictional professional with an average net worth but strong emergency savings, solid insurance, and low stress, reported higher overall financial wellbeing than a higher-net-worth peer carrying high debt and no protection — illustrating why net worth alone is an incomplete measure. This illustrative example is not a real person.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -1226,7 +1226,7 @@ export const EPISODES_PART2 = [
       misunderstandingRisk: "Treating any simulator output as a promise or forecast rather than an illustrative, assumption-dependent estimate.",
       verifyNote: "Compare against the SEC's compound interest calculator and consult a financial professional for personalized projections."
     },
-    realWorldExample: "Three composite graduates from the same graduating class ended up in very different financial positions ten years later — one through steady saving on a modest salary, one through a business sale, and one through a stable public-service career with strong benefits — illustrating that there is no single required path.",
+    realWorldExample: "Three fictional graduates from the same graduating class — Blake, Cameron, and Skyler — ended up in very different financial positions ten years later — one through steady saving on a modest salary, one through a business sale, and one through a stable public-service career with strong benefits — illustrating that there is no single required path. This illustrative example is not based on real people.",
     knowledgeChecks: [
       {
         id: "kc1",

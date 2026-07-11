@@ -137,23 +137,23 @@ export const STORY_FRAGMENTS = [
 
   // ---- Wealth Quest 2: high-income career or business interest ----
   { slot: "q02.context", matchTags: ["generic"],
-    text: "A composite professional in this quest built durable wealth slowly, on a strong but unremarkable salary." },
+    text: "A fictional professional in this quest built durable wealth slowly, on a strong but unremarkable salary." },
   { slot: "q02.context", matchTags: ["business_entrepreneurship"],
-    text: "This quest's composite founder took years of thin margins before the business ever created real personal wealth." },
+    text: "This quest's fictional founder took years of thin margins before the business ever created real personal wealth." },
 
   // ---- Wealth Quest 3: sports/entertainment/creator interest ----
   { slot: "q03.context", matchTags: ["basketball", "other_sports", "fitness_martial_arts"],
-    text: "This quest follows a composite athlete whose playing career — like most — lasted only a handful of years." },
+    text: "This quest follows a fictional athlete whose playing career — like most — lasted only a handful of years." },
   { slot: "q03.context", matchTags: ["music", "film_photography_visual_arts"],
-    text: "This quest follows a composite performer whose income arrived in an unpredictable, lump-sum rhythm." },
+    text: "This quest follows a fictional performer whose income arrived in an unpredictable, lump-sum rhythm." },
   { slot: "q03.context", matchTags: ["generic"],
-    text: "This quest follows a composite public figure whose visible success masked real financial fragility." },
+    text: "This quest follows a fictional public figure whose visible success masked real financial fragility." },
 
   // ---- Wealth Quest 4: entrepreneurship ----
   { slot: "q04.context", matchTags: ["business_entrepreneurship"],
     text: "{{name}} has already imagined scaling a business — this quest shows what equity and dilution actually mean once it grows." },
   { slot: "q04.context", matchTags: ["generic"],
-    text: "This quest examines a composite business owner deciding whether to reinvest, take on partners, or eventually sell." },
+    text: "This quest examines a fictional business owner deciding whether to reinvest, take on partners, or eventually sell." },
 
   // ---- Wealth Quest 6: privacy, service, or luxury preferences ----
   { slot: "q06.context", matchTags: ["privacy"],

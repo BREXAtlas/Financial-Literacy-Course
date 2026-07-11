@@ -332,6 +332,16 @@ export const SOURCE_REGISTRY = [
     concepts: ["brokerage account protection", "SIPC coverage limits"],
     classification: "primary",
     reviewed: "2026-07-10"
+  },
+  {
+    id: "finra-margin",
+    title: "Margin Accounts",
+    org: "Financial Industry Regulatory Authority",
+    url: "https://www.finra.org/investors/investing/investment-accounts/margin-accounts",
+    topic: "Borrowing against investments",
+    concepts: ["margin call", "loan-to-value", "collateral", "forced sale"],
+    classification: "primary",
+    reviewed: "2026-07-10"
   }
 ];
 

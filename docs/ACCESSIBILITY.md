@@ -22,6 +22,30 @@ shared helpers and `assets/styles.css` for focus/contrast rules.
 - Print-friendly lesson summaries (`assets/print.css`)
 - No timed quizzes anywhere in the course
 
+## Per-card choice results
+
+Each choice card (`assets/choice-cards.js`) owns its own result region directly beneath its "Choose this" button,
+marked with `aria-live="polite"` and a focusable (`tabindex="-1"`) result heading. Selecting a card:
+
+- Populates and reveals only that card's result region; any other open result is collapsed and cleared.
+- Marks the selected card with `data-selected="true"` (a visible border/label change, not color alone).
+- Moves focus to the result heading with `{ preventScroll: true }` so the learner is not scrolled away from the
+  card they just selected.
+- Never duplicates stars or progress — `recordChoice()` overwrites the stored choice for that node, and star
+  computation is a boolean-gated count, not a per-click counter, so previewing multiple paths before continuing
+  is safe.
+
+This replaced a single shared `#consequence-panel` below the whole choice list, which required scrolling and
+could not show more than one result at a time.
+
+## Visualization accessibility
+
+`assets/visualization-engine.js` renders every chart with: a heading and description, a `role="img"` visual
+with an `aria-label` accessibility summary, a `<details>`-disclosed data table with the same numbers (`View as a
+table`), and text assumptions/sources/review date. No visualization relies on color alone — every value is
+printed as text on or beside its mark. No visualization animates, so there is nothing to disable under
+`prefers-reduced-motion`.
+
 ## Manual testing checklist
 
 - [ ] Full keyboard-only pass through onboarding, an episode, and a quest

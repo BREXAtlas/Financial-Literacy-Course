@@ -37,3 +37,23 @@ presentation. The presentation list is intentionally extensible (see `CHARACTER_
 Foundation slots: episodes 1, 2, 3, 4, 6, 7, 8, 10, 12, 14, 16, 18, 20.
 Wealth Quest slots: quests 2, 3, 4, 6, 10, 15, 19, 20.
 All other episodes/quests render the standard, non-personalized narrative for every learner.
+
+## Grammatical token resolution
+
+Curriculum text uses `{{name}}`, `{{name}}'s`, `{{subject}}`, `{{object}}`, and `{{possessive}}` tokens.
+`resolveTokens()` in `assets/personalization-engine.js` resolves them:
+
+- **A display name exists:** tokens resolve directly to the name/pronoun as written (`{{name}} gets a card` →
+  `Jordan gets a card`).
+- **No display name:** the sentence is rewritten in natural second person, not a mechanical substitution. The verb
+  immediately following `{{name}}`/`{{subject}}` is de-conjugated to its base form (`gets` → `get`, `has` →
+  `have`, `is` → `are`) and `{{name}}'s` resolves to `your`, so the result reads "You get a card" and "Your first
+  paycheck arrives Friday" rather than "You gets a card" or "You's first paycheck." A small irregular-verb map
+  and a sibilant-ending rule (`researches` → `research`) handle exceptions; see the `deconjugate()` function.
+
+**Known limitation:** the de-conjugation only covers the single verb directly bound to the token. A compound
+predicate sharing the same implied subject later in the sentence (e.g., "{{name}} gets an offer... and has to
+decide") is not re-walked, so a second verb far from the token can still render in third-person form when no name
+is set. This is a residual edge case, not the reported "You gets/You's" bug, which is fixed. Every place curriculum
+text is displayed (narrative, scenario prompt, choice text, consequences, knowledge checks) now routes through
+`resolveTokens()` — previously the scenario prompt and consequence panels rendered raw, unresolved text.

@@ -204,7 +204,10 @@
     stepNumberEl.textContent = String(step);
     backBtn.hidden = step === 1;
     const isLast = step === totalSteps;
-    nextBtn.hidden = isLast;
+    nextBtn.hidden = false;
+    nextBtn.disabled = isLast;
+    nextBtn.setAttribute("aria-disabled", String(isLast));
+    nextBtn.tabIndex = isLast ? -1 : 0;
     skipBtn.hidden = isLast || step === 1;
     beginBtn.hidden = !isLast;
     beginGenericBtn.hidden = !isLast;

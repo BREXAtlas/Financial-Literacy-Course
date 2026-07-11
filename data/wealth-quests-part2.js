@@ -1,7 +1,7 @@
 // Ram Ready Financial Futures — Future Wealth Quest, Quests 11-20
 // Tier III (~$100M-$1B): quests 11-15. Tier IV ($1B+ systems): quests 16-20.
 // These tiers describe systems of ownership, governance, and risk — not a
-// ranking of human worth. All real-world examples are fictional composites;
+// ranking of human worth. All real-world examples are fictional illustrations, not real people or organizations.
 // no living person is named or depicted.
 
 export const QUESTS_PART2 = [
@@ -23,7 +23,7 @@ export const QUESTS_PART2 = [
     approvedStoryFragments: [],
     scenario: {
       prompt:
-        "A composite family's assets — a private business, real estate, and a growing investment portfolio — have outgrown one bookkeeper and a part-time CPA. The family is deciding how to organize ongoing financial management.",
+        "A fictional family's assets — a private business, real estate, and a growing investment portfolio — have outgrown one bookkeeper and a part-time CPA. The family is deciding how to organize ongoing financial management.",
       type: "multiple_choice"
     },
     choices: [
@@ -93,7 +93,7 @@ export const QUESTS_PART2 = [
       verifyNote: "Fee structures and conflict disclosures should be verified directly with any professional or firm being considered."
     },
     realWorldExample:
-      "A composite family that sold a regional business for a large sum initially over-hired a full internal staff, then downsized to a lean multi-family office arrangement once they realized their ongoing complexity did not justify the original overhead.",
+      "A fictional family that sold a regional business for a large sum initially over-hired a full internal staff, then downsized to a lean multi-family office arrangement once they realized their ongoing complexity did not justify the original overhead.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -147,7 +147,7 @@ export const QUESTS_PART2 = [
     approvedStoryFragments: [],
     scenario: {
       prompt:
-        "A composite family business has grown to include several family members in leadership roles, outside investors, and a lender. A large discretionary expense request comes in with no formal approval process in place.",
+        "A fictional family business has grown to include several family members in leadership roles, outside investors, and a lender. A large discretionary expense request comes in with no formal approval process in place.",
       type: "multiple_choice"
     },
     choices: [
@@ -217,7 +217,7 @@ export const QUESTS_PART2 = [
       verifyNote: "Specific governance and audit requirements vary by entity type and should be reviewed with a qualified attorney or CPA."
     },
     realWorldExample:
-      "A composite multi-generational family business avoided a costly dispute over a large equipment purchase only because a written dual-approval policy already existed — without it, the disagreement would have had no objective resolution process.",
+      "A fictional multi-generational family business avoided a costly dispute over a large equipment purchase only because a written dual-approval policy already existed — without it, the disagreement would have had no objective resolution process.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -271,7 +271,7 @@ export const QUESTS_PART2 = [
     approvedStoryFragments: [],
     scenario: {
       prompt:
-        "A composite startup employee holds a large equity stake that is now worth many times their salary, but a lockup period is ending and the stock has been volatile.",
+        "A fictional startup employee holds a large equity stake that is now worth many times their salary, but a lockup period is ending and the stock has been volatile.",
       type: "multiple_choice"
     },
     choices: [
@@ -341,7 +341,7 @@ export const QUESTS_PART2 = [
       verifyNote: "Insider trading rules, disclosure requirements, and tax treatment should be verified with a securities attorney and CPA before any sale."
     },
     realWorldExample:
-      "A composite early employee at a technology company held equity worth many years of salary, but had to work with legal counsel to understand disclosure rules before any shares could be sold following the company's public offering.",
+      "A fictional early employee at a technology company held equity worth many years of salary, but had to work with legal counsel to understand disclosure rules before any shares could be sold following the company's public offering.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -383,6 +383,7 @@ export const QUESTS_PART2 = [
     title: "Borrowing Against Assets—Why It Exists and What Can Break",
     subtitle: "\"Buy, borrow, die\" is a shorthand, not a guarantee.",
     estimatedMinutes: 16,
+    calculatorType: "marginCallStressTest",
     learningObjectives: [
       "Explain securities-backed lending, margin loans, and asset-backed credit lines",
       "Identify collateral requirements, loan-to-value ratios, and margin calls",
@@ -395,7 +396,7 @@ export const QUESTS_PART2 = [
     approvedStoryFragments: [],
     scenario: {
       prompt:
-        "A composite business owner with a large, mostly illiquid net worth (concentrated stock and real estate) wants funds for a new opportunity without selling appreciated assets and triggering capital gains taxes.",
+        "A fictional business owner with a large, mostly illiquid net worth (concentrated stock and real estate) wants funds for a new opportunity without selling appreciated assets and triggering capital gains taxes.",
       type: "multiple_choice"
     },
     choices: [
@@ -465,7 +466,7 @@ export const QUESTS_PART2 = [
       verifyNote: "Loan terms, margin requirements, and tax/estate treatment of asset-backed borrowing should be verified with a lender, tax professional, and estate attorney — rules and rates change."
     },
     realWorldExample:
-      "A composite business owner used a securities-backed line of credit to fund an expansion, then faced a margin call when markets fell the same year — forcing a partial, poorly timed sale of the very portfolio the loan was meant to protect.",
+      "A fictional business owner used a securities-backed line of credit to fund an expansion, then faced a margin call when markets fell the same year — forcing a partial, poorly timed sale of the very portfolio the loan was meant to protect.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -519,7 +520,7 @@ export const QUESTS_PART2 = [
     approvedStoryFragments: [],
     scenario: {
       prompt:
-        "A composite business owner's company has grown large enough to attract local media attention, and the owner is deciding how to handle personal security, public communications, and increased public scrutiny.",
+        "A fictional business owner's company has grown large enough to attract local media attention, and the owner is deciding how to handle personal security, public communications, and increased public scrutiny.",
       type: "multiple_choice"
     },
     choices: [
@@ -589,7 +590,7 @@ export const QUESTS_PART2 = [
       verifyNote: "Claims about any organization's charitable impact, employee treatment, or compliance record should be verified through independent public reporting and filings, not marketing materials alone."
     },
     realWorldExample:
-      "A composite regional employer became a local media subject once it became the area's largest employer, and had to build both cybersecurity protections and a communications process it had never previously needed.",
+      "A fictional regional employer became a local media subject once it became the area's largest employer, and had to build both cybersecurity protections and a communications process it had never previously needed.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -638,12 +639,12 @@ export const QUESTS_PART2 = [
       "Recognize why reported net worth can change rapidly with market prices"
     ],
     openingNarrative:
-      "Headlines love a single net-worth number, but that number is almost always a snapshot of unrealized ownership value — mostly stock, at a specific day's price — not spendable cash sitting anywhere. This quest is entirely about a fictional composite founder, not any real person.",
+      "Headlines love a single net-worth number, but that number is almost always a snapshot of unrealized ownership value — mostly stock, at a specific day's price — not spendable cash sitting anywhere. This quest is entirely about a fictional founder, not any real person.",
     personalizationSlots: [],
     approvedStoryFragments: [],
     scenario: {
       prompt:
-        "A composite founder's company goes public, and financial media report the founder's net worth at a large headline figure based on the company's opening share price and the founder's ownership stake.",
+        "A fictional founder's company goes public, and financial media report the founder's net worth at a large headline figure based on the company's opening share price and the founder's ownership stake.",
       type: "multiple_choice"
     },
     choices: [
@@ -713,7 +714,7 @@ export const QUESTS_PART2 = [
       verifyNote: "Any specific reported net-worth figure should be understood as an estimate based on a specific valuation date and methodology, subject to significant change."
     },
     realWorldExample:
-      "A fictional composite founder's reported net worth swung by a large percentage in a single week purely because of stock price movement — with no change in the number of shares owned, business operations, or personal spending.",
+      "A fictional founder's reported net worth swung by a large percentage in a single week purely because of stock price movement — with no change in the number of shares owned, business operations, or personal spending.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -767,7 +768,7 @@ export const QUESTS_PART2 = [
     approvedStoryFragments: [],
     scenario: {
       prompt:
-        "A composite private company completes a funding round that values it at a high headline figure, based on the price paid for a small percentage of new shares.",
+        "A fictional private company completes a funding round that values it at a high headline figure, based on the price paid for a small percentage of new shares.",
       type: "multiple_choice"
     },
     choices: [
@@ -837,7 +838,7 @@ export const QUESTS_PART2 = [
       verifyNote: "Specific valuation methodologies and their assumptions should be reviewed directly in company disclosures or funding announcements, not media headlines alone."
     },
     realWorldExample:
-      "A composite private company's valuation dropped significantly in a later funding round after market conditions shifted — a 'down round' that reduced the paper value of earlier investors' and founders' stakes without any sale having occurred.",
+      "A fictional private company's valuation dropped significantly in a later funding round after market conditions shifted — a 'down round' that reduced the paper value of earlier investors' and founders' stakes without any sale having occurred.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -891,7 +892,7 @@ export const QUESTS_PART2 = [
     approvedStoryFragments: [],
     scenario: {
       prompt:
-        "A composite large employer is weighing how to respond to new proposed regulations affecting its industry. Different stakeholders — employees, competitors, regulators, and shareholders — hold different views on what the regulation should require.",
+        "A fictional large employer is weighing how to respond to new proposed regulations affecting its industry. Different stakeholders — employees, competitors, regulators, and shareholders — hold different views on what the regulation should require.",
       type: "rank_tradeoffs"
     },
     choices: [
@@ -961,7 +962,7 @@ export const QUESTS_PART2 = [
       verifyNote: "Specific regulatory, tax, and antitrust rules change over time and vary by jurisdiction and industry — always verify current requirements with legal and policy experts."
     },
     realWorldExample:
-      "A composite industry faced a proposed safety regulation where worker advocates, company leadership, and independent economists each cited credible evidence supporting different positions — illustrating that this was a genuine values-and-evidence disagreement, not a case with one obviously correct answer.",
+      "A fictional industry faced a proposed safety regulation where worker advocates, company leadership, and independent economists each cited credible evidence supporting different positions — illustrating that this was a genuine values-and-evidence disagreement, not a case with one obviously correct answer.",
     knowledgeChecks: [
       {
         id: "kc1",
@@ -1015,7 +1016,7 @@ export const QUESTS_PART2 = [
     approvedStoryFragments: [],
     scenario: {
       prompt:
-        "A composite donor wants to address a community problem (such as access to educational resources) and is deciding how to structure significant charitable giving.",
+        "A fictional donor wants to address a community problem (such as access to educational resources) and is deciding how to structure significant charitable giving.",
       type: "multiple_choice"
     },
     choices: [
@@ -1085,7 +1086,7 @@ export const QUESTS_PART2 = [
       verifyNote: "Specific tax treatment and distribution requirements for these charitable vehicles should be verified with the IRS and a qualified tax or legal professional, as rules can change."
     },
     realWorldExample:
-      "A composite donor's private foundation funded a well-intentioned educational program that ultimately struggled because it was designed without input from the community it aimed to serve — illustrating that funding alone does not guarantee effective or welcomed impact.",
+      "A fictional donor's private foundation funded a well-intentioned educational program that ultimately struggled because it was designed without input from the community it aimed to serve — illustrating that funding alone does not guarantee effective or welcomed impact.",
     knowledgeChecks: [
       {
         id: "kc1",

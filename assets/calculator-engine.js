@@ -111,6 +111,69 @@ export function salaryVsTotalComp({ salary, retirementMatchAnnual = 0, insurance
   }, "Benefit values are illustrative estimates; actual value depends on personal use and plan design.");
 }
 
+export function bankFeeAnnualCost({ monthlyMaintenanceFee = 0, overdraftFee = 0, expectedOverdraftsPerYear = 0, otherAnnualFees = 0 }) {
+  const annualCost = monthlyMaintenanceFee * 12 + overdraftFee * expectedOverdraftsPerYear + otherAnnualFees;
+  return wrap("bankFeeAnnualCost", { monthlyMaintenanceFee, overdraftFee, expectedOverdraftsPerYear, otherAnnualFees }, {
+    annualCost
+  }, "Assumes fees stay constant all year; many fees can be reduced or waived through direct deposit or minimum-balance requirements.");
+}
+
+export function transportationTotalCost({ loanOrLeasePayment = 0, insurance = 0, fuelOrFares = 0, maintenance = 0 }) {
+  const monthlyTotal = loanOrLeasePayment + insurance + fuelOrFares + maintenance;
+  return wrap("transportationTotalCost", { loanOrLeasePayment, insurance, fuelOrFares, maintenance }, {
+    monthlyTotal, annualTotal: Math.round(monthlyTotal * 12)
+  }, "Averages maintenance and fuel costs across the year; actual monthly costs vary and large repairs are lumpy, not smooth.");
+}
+
+export function debtAvalancheSnowball({ debts = [], extraMonthlyPayment = 0 }) {
+  function simulate(order) {
+    let remaining = order.map((d) => ({ ...d }));
+    let months = 0;
+    let totalInterest = 0;
+    while (remaining.some((d) => d.balance > 0) && months < 600) {
+      months += 1;
+      let extra = extraMonthlyPayment;
+      for (const d of remaining) {
+        if (d.balance <= 0) continue;
+        const interest = d.balance * (d.aprPct / 100 / 12);
+        totalInterest += interest;
+        d.balance += interest;
+        const payment = Math.min(d.balance, d.minPayment);
+        d.balance -= payment;
+      }
+      for (const d of remaining) {
+        if (extra <= 0) break;
+        if (d.balance <= 0) continue;
+        const payment = Math.min(d.balance, extra);
+        d.balance -= payment;
+        extra -= payment;
+      }
+    }
+    return { months, totalInterest: Math.round(totalInterest) };
+  }
+
+  const avalancheOrder = [...debts].sort((a, b) => b.aprPct - a.aprPct);
+  const snowballOrder = [...debts].sort((a, b) => a.balance - b.balance);
+  const avalanche = simulate(avalancheOrder);
+  const snowball = simulate(snowballOrder);
+
+  return wrap("debtAvalancheSnowball", { debts, extraMonthlyPayment }, {
+    avalanche, snowball
+  }, "Assumes fixed APRs and consistent extra payment every month; a missed payment or new charge changes the real result.");
+}
+
+export function marginCallStressTest({ portfolioValue, loanAmount, maintenanceThresholdPct = 30, marketDropPct }) {
+  const stressedValue = portfolioValue * (1 - marketDropPct / 100);
+  const loanToValuePct = Math.round((loanAmount / stressedValue) * 1000) / 10;
+  const maintenanceEquityRequired = stressedValue * (maintenanceThresholdPct / 100);
+  const equity = stressedValue - loanAmount;
+  const marginCall = equity < maintenanceEquityRequired;
+  const shortfall = marginCall ? Math.round(maintenanceEquityRequired - equity) : 0;
+  return wrap("marginCallStressTest", { portfolioValue, loanAmount, maintenanceThresholdPct, marketDropPct }, {
+    stressedValue: Math.round(stressedValue), loanToValuePct, equity: Math.round(equity), marginCall, shortfall
+  }, "A simplified single-shock model; real lender maintenance requirements, margin rates, and timing vary by broker and asset type.");
+}
+
 export function roadTo1_5Million(assumptions) {
   const cases = Object.values(GROWTH_ILLUSTRATIONS).map((illustration) => {
     const growth = compoundGrowth({
